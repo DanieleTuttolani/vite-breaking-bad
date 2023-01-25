@@ -15,7 +15,7 @@ export default{
     <div class="row row-cols-4 cs-card-wrapper p-3">
             <div v-for="pokemon in store.pokemons" :key="pokemon.id" class="card-wrapper my-3">
                 <div class="card text-light" :class="pokemon.color" style="width: 18rem;">
-                    <img :src="pokemon.imageUrl" class="card-img-top"  alt="...">
+                    <img :src="pokemon.imageUrl" class="card-img-top"  :alt="pokemon.name">
                     <div class="card-body">
                         <h5 class="card-title">{{ pokemon.name }}</h5>
                         <p class="card-text"> Pokemon HP :{{ pokemon.hp }}</p>
@@ -53,6 +53,9 @@ export default{
     }
     .Pink{
         background-color: pink;
+    }
+    .Yellow{
+        background-color: rgb(156, 156, 0);
     }
 }
 </style>
