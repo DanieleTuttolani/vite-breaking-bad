@@ -6,12 +6,19 @@ import CardSection from './components/CardSection.vue';
 export default {
     data() {
         return {
-            store
+            store,
+            prova: "",
+            optionValue: ''
         }
     },
     methods: {
-        fetchAllApi(url) {
-            axios.get(url)
+        setValue() {
+            this.optionValue = choosenOption
+        },
+        fetchPokeUri() {
+            this.setValue()
+            this.prova = `https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=${this.optionValue}`
+            axios.get(this.prova)
                 .then(res => {
                     this.store.pokemons = res.data.docs
                 })
@@ -25,7 +32,7 @@ export default {
         axios.get(store.pokeUri)
             .then(res => {
                 this.store.pokemons = res.data.docs
-            })
+            });
 
         axios.get(store.pokeTypesUri)
             .then(res => {
@@ -40,7 +47,7 @@ export default {
         <div class="main-title mt-5">
             <h1 class=" text-center text-light">Il Mio Pokedex</h1>
         </div>
-        <OptionSelector />
+        <OptionSelector @option-changing="fetchPokeUri()" />
         <!-- card section -->
         <CardSection />
     </div>
