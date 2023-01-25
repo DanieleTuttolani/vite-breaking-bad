@@ -12,11 +12,9 @@ export default {
         }
     },
     methods: {
-        setValue() {
+
+        fetchPokeUri(choosenOption) {
             this.optionValue = choosenOption
-        },
-        fetchPokeUri() {
-            this.setValue()
             this.prova = `https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=${this.optionValue}`
             axios.get(this.prova)
                 .then(res => {
@@ -47,7 +45,7 @@ export default {
         <div class="main-title mt-5">
             <h1 class=" text-center text-light">Il Mio Pokedex</h1>
         </div>
-        <OptionSelector @option-changing="fetchPokeUri()" />
+        <OptionSelector @option-changing="fetchPokeUri" />
         <!-- card section -->
         <CardSection />
     </div>
